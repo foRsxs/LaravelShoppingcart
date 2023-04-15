@@ -25,7 +25,7 @@ class DefaultCalculator implements Calculator
             case 'subtotal':
                 return max(round($cartItem->priceTotal - $cartItem->discountTotal, $decimals), 0);
             case 'priceTarget':
-                return round(($cartItem->priceTotal - $cartItem->discountTotal) / $cartItem->qty, $decimals);
+                return !empty($cartItem->qty) ? round(($cartItem->priceTotal - $cartItem->discountTotal) / $cartItem->qty, $decimals) : 0;
             case 'taxTotal':
                 return round($cartItem->subtotal * ($cartItem->taxRate / 100), $decimals);
             case 'total':

@@ -26,6 +26,18 @@ return [
 
     'tax' => 21,
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default ZERO qty in cart
+    |--------------------------------------------------------------------------
+    |
+    | By default in cart qty can't be zero (0), after update all items with zero qty will be remove
+    |
+    */
+
+    'zero_qty' => false,
+
     /*
     |--------------------------------------------------------------------------
     | Shoppingcart database settings

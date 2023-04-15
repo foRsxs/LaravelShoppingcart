@@ -297,7 +297,7 @@ class CartItem implements Arrayable, Jsonable
      */
     public function setQuantity($qty)
     {
-        if (empty($qty) || !is_numeric($qty)) {
+        if (!isset($qty) || !is_numeric($qty)) {
             throw new \InvalidArgumentException('Please supply a valid quantity.');
         }
 

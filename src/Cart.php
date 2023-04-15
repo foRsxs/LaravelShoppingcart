@@ -215,7 +215,7 @@ class Cart
             }
         }
 
-        if ($cartItem->qty <= 0) {
+        if ($cartItem->qty <= 0 && !config('cart.zero_qty', false)) {
             $this->remove($cartItem->rowId);
 
             return;
