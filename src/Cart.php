@@ -211,7 +211,7 @@ class Cart
 
             if ($content->has($cartItem->rowId)) {
                 $existingCartItem = $this->get($cartItem->rowId);
-                $cartItem->setQuantity($existingCartItem->qty + $cartItem->qty);
+                $cartItem->setQuantity($existingCartItem->qty + $cartItem->qty, $existingCartItem->pcs + $cartItem->pcs);
             }
         }
 

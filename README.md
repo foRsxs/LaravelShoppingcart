@@ -2,6 +2,10 @@
 
 This is a fork of [bumbummen99 LaravelShoppingcart](https://github.com/bumbummen99/LaravelShoppingcart) extended with minor features compatible with Laravel 10+. An example integration can be [found here](https://github.com/bumbummen99/LaravelShoppingcartDemo).
 
+This fork modified for use products that can be sell pieces. For example Pharmacy store: 1 product consist 6 pieces and in cart can be 1 pack 3 pieces.
+
+Class CartItem have new attribute - pcs (pieces)
+
 ## Installation
 
 Install the [package](https://packagist.org/packages/forsxs/shoppingcart) through [Composer](http://getcomposer.org/). 

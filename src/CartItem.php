@@ -47,6 +47,13 @@ class CartItem implements Arrayable, Jsonable
     public $qty;
 
     /**
+     * The pieces for this cart item.
+     *
+     * @var int|float
+     */
+    public $pcs;
+
+    /**
      * The name of the cart item.
      *
      * @var string
@@ -295,13 +302,17 @@ class CartItem implements Arrayable, Jsonable
      *
      * @param int|float $qty
      */
-    public function setQuantity($qty)
+    public function setQuantity($qty, $pcs = 0)
     {
         if (!isset($qty) || !is_numeric($qty)) {
             throw new \InvalidArgumentException('Please supply a valid quantity.');
         }
 
         $this->qty = $qty;
+
+        if (isset($pcs) && is_numeric($pcs)){
+            $this->pcs = $pcs;
+        }
     }
 
     /**
@@ -329,6 +340,7 @@ class CartItem implements Arrayable, Jsonable
     {
         $this->id = Arr::get($attributes, 'id', $this->id);
         $this->qty = Arr::get($attributes, 'qty', $this->qty);
+        $this->pcs = Arr::get($attributes, 'pcs', $this->pcs);
         $this->name = Arr::get($attributes, 'name', $this->name);
         $this->price = Arr::get($attributes, 'price', $this->price);
         $this->weight = Arr::get($attributes, 'weight', $this->weight);
@@ -499,6 +511,7 @@ class CartItem implements Arrayable, Jsonable
             'id'       => $this->id,
             'name'     => $this->name,
             'qty'      => $this->qty,
+            'pcs'      => $this->pcs,
             'price'    => $this->price,
             'weight'   => $this->weight,
             'options'  => is_object($this->options)
