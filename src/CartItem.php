@@ -103,6 +103,14 @@ class CartItem implements Arrayable, Jsonable
     private $discountRate = 0;
 
     /**
+     * The discount amount for the cart item
+     *
+     * @var float
+     */
+    public $discountAmount = 0;
+
+
+    /**
      * The cart instance of the cart item.
      *
      * @var null|string
@@ -269,6 +277,21 @@ class CartItem implements Arrayable, Jsonable
         return $this->numberFormat($this->discount, $decimals, $decimalPoint, $thousandSeperator);
     }
 
+
+    /**
+     * Returns the formatted discount amount.
+     *
+     * @param int    $decimals
+     * @param string $decimalPoint
+     * @param string $thousandSeperator
+     *
+     * @return string
+     */
+    public function discountAmount($decimals = null, $decimalPoint = null, $thousandSeperator = null)
+    {
+        return $this->numberFormat($this->discountAmount, $decimals, $decimalPoint, $thousandSeperator);
+    }
+
     /**
      * Returns the formatted total discount for this cart item.
      *
@@ -387,6 +410,22 @@ class CartItem implements Arrayable, Jsonable
     public function setDiscountRate($discountRate)
     {
         $this->discountRate = $discountRate;
+        $this->discountAmount = 0;
+
+        return $this;
+    }
+
+    /**
+     * Set the discount amount.
+     *
+     * @param int|float $discountAmount
+     *
+     * @return \Gloudemans\Shoppingcart\CartItem
+     */
+    public function setDiscountAmount($discountAmount)
+    {
+        $this->discountAmount = $discountAmount;
+        $this->discountRate = 0;
 
         return $this;
     }
@@ -571,5 +610,15 @@ class CartItem implements Arrayable, Jsonable
     public function getDiscountRate()
     {
         return $this->discountRate;
+    }
+
+    public function getDiscountAmount()
+    {
+        return $this->discountAmount;
+    }
+
+    public function getDiscount()
+    {
+        return $this->discountAmount;
     }
 }

@@ -603,6 +603,28 @@ class Cart
     }
 
     /**
+     * Set the discount amount for the cart item with the given rowId.
+     *
+     * @param string    $rowId
+     * @param int|float $taxRate
+     *
+     * @return void
+     */
+    public function setDiscountAmount($rowId, $discount)
+    {
+        $cartItem = $this->get($rowId);
+
+        $cartItem->setDiscountAmount($discount);
+
+        $content = $this->getContent();
+
+        $content->put($cartItem->rowId, $cartItem);
+
+        $this->session->put($this->instance, $content);
+    }
+
+
+    /**
      * Set the global discount percentage for the cart.
      * This will set the discount for all cart items.
      *

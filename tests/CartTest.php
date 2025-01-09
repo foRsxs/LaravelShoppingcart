@@ -763,6 +763,22 @@ class CartTest extends TestCase
     }
 
     /** @test */
+    public function it_can_calculate_the_discount_amount_of_a_cart_item()
+    {
+        $cart = $this->getCart();
+
+        $cart->add(new BuyableProduct([
+            'name'  => 'Some title',
+            'price' => 9.99,
+        ]), 3);
+
+        $cartItem = $cart->get('027c91341fd5cf4d2579b49c4b6a90da');
+        $cartItem->setDiscountAmount(5.55);
+
+        $this->assertEquals(13.32, $cartItem->subtotal);
+    }
+
+    /** @test */
     public function it_can_return_a_formatted_subtotal()
     {
         $cart = $this->getCart();
@@ -1341,6 +1357,19 @@ class CartTest extends TestCase
         $cartItem = $cart->get('027c91341fd5cf4d2579b49c4b6a90da');
         $cart->setDiscount('027c91341fd5cf4d2579b49c4b6a90da', 50);
         $this->assertEquals(50, $cartItem->discountRate);
+    }
+
+
+    /** @test */
+    public function can_set_cart_item_discount_amount()
+    {
+        $cart = $this->getCart();
+        $cart->add(new BuyableProduct([
+            'name' => 'First item',
+        ]), 1);
+        $cartItem = $cart->get('027c91341fd5cf4d2579b49c4b6a90da');
+        $cart->setDiscountAmount('027c91341fd5cf4d2579b49c4b6a90da', 500);
+        $this->assertEquals(500, $cartItem->discountAmount);
     }
 
     /** @test */
